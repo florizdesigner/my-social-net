@@ -1,0 +1,27 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 10px;
+
+}
+
+.dialogsUsers {
+
+}
+
+.dialogsUsers .itemUser {
+
+}
+
+.dialogsUsers .activeDialog {
+    color: #54461b;
+    font-weight: bold;
+}
+
+.dialogsItems {
+
+}
+
+.dialogsItems .itemDialogs {
+
+}

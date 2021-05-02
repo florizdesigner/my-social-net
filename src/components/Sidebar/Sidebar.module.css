@@ -1,0 +1,21 @@
+.nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.nav a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav a:active, a:hover {
+    color: #f8c214;
+}
+
+.nav a:active {
+    font-weight: bold;
+}
+
+.nav .activeLink {
+    color: #f8c214;
+}

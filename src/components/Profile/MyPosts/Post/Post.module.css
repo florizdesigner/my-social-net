@@ -1,0 +1,8 @@
+.postWrapper {
+    margin: 10px;
+}
+
+.postWrapper img {
+    display: inline-block;
+    width: 48px;
+}
