@@ -9,15 +9,21 @@ import Users from './components/Users/Users';
 import Dialogs from './components/Dialogs/Dialogs';
 
 const App = (props) => {
-
     return (
         <div className='app-wrapper'>
             <div className='item-header'><Header/></div>
             <div className='item-sidebar'><Sidebar/></div>
             <div className='app-wrapper-content'>
-                <Route path='/profile' render={() => <Profile renderPosts={props.renderPosts}/>}/>
-                <Route path='/dialogs'
-                       render={() => <Dialogs renderUser={props.renderUser} renderMessages={props.renderMessages}/>}/>
+                <Route path='/profile' render={() => <Profile
+                    profilePage={props.state.profilePage}
+                    dispatch={props.dispatch}
+                />}/>
+                <Route path='/dialogs' render={() => <Dialogs
+                    users={props.state.dialogsPage.users}
+                    messages={props.state.dialogsPage.messages}
+                    newMessageText={props.state.dialogsPage.newMessageText}
+                    dispatch={props.dispatch}
+                />}/>
                 <Route path='/settings' render={() => <Settings/>}/>
                 <Route path='/newsfeed' render={() => <News/>}/>
                 <Route path='/users' render={() => <Users/>}/>

@@ -5,7 +5,6 @@ const Post = (props) => {
     return (
         <div className={styles.postWrapper}>
             <img src='https://cdn4.iconfinder.com/data/icons/men-avatars-set-1-dot-version/380/7-512.png' alt=''/>
-            <div>Nickname: {props.name}</div>
             <div>Post: {props.message}</div>
         </div>
     )

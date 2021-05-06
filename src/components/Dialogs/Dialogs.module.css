@@ -3,6 +3,7 @@
     grid-template-columns: 2fr 10fr;
     padding: 10px;
 
+
 }
 
 .dialogsUsers {
@@ -24,4 +25,8 @@
 
 .dialogsItems .itemDialogs {
 
+}
+
+.sendMessage {
+    margin-top: 10px;
 }
