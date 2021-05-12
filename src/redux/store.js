@@ -1,3 +1,6 @@
+import profileReducer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
+
 let store = {
     _state: {
         profilePage: {
@@ -31,7 +34,7 @@ let store = {
     getState(){
         return this._state
     },
-    rerenderEntireTree() {
+    _callSubscriber() {
         console.log('state changed')
     },
     addPost() {
@@ -42,11 +45,11 @@ let store = {
 
         this._state.profilePage.posts.push(newPost)
         this._state.profilePage.newPostText = ''
-        this.rerenderEntireTree(this._state)
+        this._callSubscriber(this._state)
     },
     updateNewPostText(newText){
         this._state.profilePage.newPostText = newText
-        this.rerenderEntireTree(this._state)
+        this._callSubscriber(this._state)
 
     },
     addMessage(){
@@ -56,40 +59,20 @@ let store = {
         }
         this._state.dialogsPage.messages.push(newMessage)
         this._state.dialogsPage.newMessageText = ''
-        this.rerenderEntireTree(this._state)
+        this._callSubscriber(this._state)
     },
     updateNewMessageText(newText){
         this._state.dialogsPage.newMessageText = newText
-        this.rerenderEntireTree()
+        this._callSubscriber()
     },
     subscribe(observer){
-        this.rerenderEntireTree = observer
+        this._callSubscriber = observer
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            let newPost = {
-                id: 3,
-                message: this._state.profilePage.newPostText
-            }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
 
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this.rerenderEntireTree(this._state)
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText
-            this.rerenderEntireTree(this._state)
-        } else if (action.type === 'ADD-MESSAGE') {
-            let newMessage = {
-                id: 7,
-                message: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messages.push(newMessage)
-            this._state.dialogsPage.newMessageText = ''
-            this.rerenderEntireTree(this._state)
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newText
-            this.rerenderEntireTree()
-        }
+        this._callSubscriber(this._state)
             }
 }
 
