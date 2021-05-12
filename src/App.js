@@ -6,7 +6,6 @@ import Profile from './components/Profile/Profile';
 import News from './components/News/News';
 import Settings from './components/Settings/Settings';
 import Users from './components/Users/Users';
-import Dialogs from './components/Dialogs/Dialogs';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 
 const App = (props) => {
@@ -16,15 +15,8 @@ const App = (props) => {
             <div className='item-header'><Header/></div>
             <div className='item-sidebar'><Sidebar/></div>
             <div className='app-wrapper-content'>
-                <Route path='/profile' render={() => <Profile store={props.store}
-                />}/>
-                <Route path='/dialogs' render={() => <DialogsContainer
-                    store={props.store}
-                    // users={props.state.dialogsPage.users}
-                    // messages={props.state.dialogsPage.messages}
-                    // newMessageText={props.state.dialogsPage.newMessageText}
-                    // dispatch={props.dispatch}
-                />}/>
+                <Route path='/profile' render={() => <Profile/>}/>
+                <Route path='/dialogs' render={() => <DialogsContainer/>}/>
                 <Route path='/settings' render={() => <Settings/>}/>
                 <Route path='/newsfeed' render={() => <News/>}/>
                 <Route path='/users' render={() => <Users/>}/>
