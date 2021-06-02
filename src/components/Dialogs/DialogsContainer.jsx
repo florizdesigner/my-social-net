@@ -1,25 +1,26 @@
 import React from 'react';
 import {addMessageActionCreator, updateNewMessageTextActionCreator} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
-import ContextStore from '../../ContextStore';
+import {connect} from 'react-redux';
+import {withAuthRedirect} from '../../assets/hoc/withAuthRedirect';
+import {compose} from 'redux';
 
-const DialogsContainer = (props) => {
-
-    return <ContextStore.Consumer>
-        {
-            (store) => {
-            let sendMessage = () => {
-                store.dispatch(addMessageActionCreator())
-            }
-            let updateMessagesText = (message) => {
-                store.dispatch(updateNewMessageTextActionCreator(message))
-            }
-            return <Dialogs addMessage={sendMessage} updateMessagesText={updateMessagesText}
-                            dialogsPage={store.getState().dialogsPage}/>
+let mapStateToProps = (state) => {
+    return {
+        dialogsPage: state.dialogsPage,
+    }
+}
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addMessage: () => {
+            dispatch(addMessageActionCreator())
+        },
+        updateMessagesText: (message) => {
+            dispatch(updateNewMessageTextActionCreator(message))
         }
-        }
-    </ContextStore.Consumer>
-
+    }
 }
 
-export default DialogsContainer
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps), withAuthRedirect
+)(Dialogs)
