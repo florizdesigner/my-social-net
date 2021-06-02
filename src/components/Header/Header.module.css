@@ -4,3 +4,12 @@
     padding-top: 18px;
     margin: 0 auto;
 }
+
+.loginBlock {
+    float: right;
+}
+
+.loginBlock a {
+    color: #fff;
+    text-decoration: none;
+}
